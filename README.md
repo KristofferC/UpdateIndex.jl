@@ -6,7 +6,7 @@
 
 The issue: In Julia, the command `A[i] += s` quickly gets lowered to `A[i] = A[i] + s`. For normal arrays this is fine but it is sometimes expensive to call `A[i]` and we would like to avoid that.
 
-This package introduces the macro `@update!` that transforms the expression `A[i...] ?= s` where `?` is some binary infix operator to the call `updateindex!(A, ?, s, i...)`. The default fallback method for `updateindex!` is: `updateindex!(A, f::Function, s, I::Vararg) = A[I...] = f(A[I...], s)` which will just do the same thing as if no macro would have been used. 
+This package introduces the macro `@update!` that transforms the expression `A[i...] ?= s` where `?` is some binary infix operator to the call `updateindex!(A, ?, s, i...)`. The default fallback method for `updateindex!` is: `updateindex!(A, f, s, I::Vararg) = A[I...] = f(A[I...], s)` which will just do the same thing as if no macro would have been used. 
 
 A type that implements `getindex` and `setindex!` can now chose to implement `updateindex!` for faster updates.
 
