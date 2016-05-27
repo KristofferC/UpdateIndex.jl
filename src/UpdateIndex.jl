@@ -6,8 +6,8 @@ macro update!(ex)
     @assert isa(ex.head, Symbol)
     opstr = string(ex.head)
     @assert length(opstr) == 2
-    op = Symbol(first(opstr))
-    @assert Symbol(last(opstr)) == :(=)
+    op = Symbol(opstr[1:1])
+    @assert Symbol(opstr[2:2]) == :(=)
     arr = ex.args[1].args[1]
     inds = ex.args[1].args[2:end]
     s = ex.args[2]

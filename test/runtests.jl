@@ -17,4 +17,8 @@ updateindex!(Asp, -, 2.0, 3, 3)
 
 met = @which(updateindex!(Asp, -, 2.0, 3, 3))
 # Check overloading is woking
-@test string(met.sig.parameters[2].name) == "SparseMatrixCSC"
+if VERSION <= v"0.5-dev"
+    @test string(met.sig.parameters[1].name) == "SparseMatrixCSC"
+else
+    @test string(met.sig.parameters[2].name) == "SparseMatrixCSC"
+end
