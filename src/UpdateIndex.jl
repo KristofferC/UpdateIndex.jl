@@ -15,9 +15,9 @@ macro update!(ex)
 end
 
 updateindex!(A, f, s, i) = A[i] = f(A[i], s)
-updateindex!(A, f, s, i, j) = A[i] = f(A[i, j], s)
-updateindex!(A, f, s, i, j, k) = A[i] = f(A[i, j, k], s)
-updateindex!(A, f, s, i, j, k, l) = A[i] = f(A[i, j, k, l], s)
+updateindex!(A, f, s, i, j) = A[i, j] = f(A[i, j], s)
+updateindex!(A, f, s, i, j, k) = A[i, j, k] = f(A[i, j, k], s)
+updateindex!(A, f, s, i, j, k, l) = A[i, j, k, l] = f(A[i, j, k, l], s)
 updateindex!(A, f, s, I::Vararg) = A[I...] = f(A[I...], s)
 
 # SparseMatrix updateindex!
